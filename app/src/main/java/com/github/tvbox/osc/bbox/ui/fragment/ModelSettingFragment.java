@@ -198,8 +198,7 @@ public class ModelSettingFragment extends BaseLazyFragment {
                 ((BaseActivity) requireActivity()).changeWallpaper(true);
             }
         });
-
-findViewById(R.id.llHomeApi).setOnClickListener( v -> {
+        findViewById(R.id.llHomeApi).setOnClickListener( v -> {
             ArrayList<String> history = Hawk.get(HawkConfig.API_NAME_HISTORY, new ArrayList<>());
             HashMap<String, String> map = Hawk.get(HawkConfig.API_MAP, new HashMap<>());
 
@@ -224,6 +223,14 @@ findViewById(R.id.llHomeApi).setOnClickListener( v -> {
 
                     dialog.dismiss();
                 }
+
+
+                @Override
+                public void del(String value, ArrayList<String> data) {
+                    Hawk.put(HawkConfig.API_NAME_HISTORY, data);
+                }
+            }, history, idx);
+            dialog.show();
         });
         findViewById(R.id.llDns).setOnClickListener(new View.OnClickListener() {
             @Override
